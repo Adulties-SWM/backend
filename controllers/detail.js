@@ -1,8 +1,8 @@
-const info = require("info.js");
+const info = require("./info");
 
 exports.getDetail = async (req, res) => {
-    const hpid = req.hpid;
-    let data = info.getHospitalInfo(hpid);
+    const hpid = req.query.hpid;
+    let data = await info.getHospitalInfo(hpid);
 
     let dutytime = "";
     dutytime = dutytime.concat(`월(${data.dutyTime1s}~${data.dutyTime1c}),`);
