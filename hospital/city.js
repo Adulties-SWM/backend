@@ -19,6 +19,22 @@ var sickness = {
     };
 
 
+var cityname = {
+    "경기":"경기도",
+    "서울":"서울특별시",
+    "충남":"충청남도",
+    "충북":"충청북도",
+    "강원":"강원도",
+    "대전":"대전광역시",
+    "전남":"전라남도",
+    "전북":"전라북도",
+    "광주":"광주광역시",
+    "경북":"경상북도",
+    "경남":"경상남도",
+    "울산":"울산광역시",
+    "부산":"부산광역시",
+    "제주":"제주특별자치도"
+    };
 const centerInstance = axios.create({
     baseURL: "http://apis.data.go.kr/B552657/ErmctInfoInqireService",
 });
@@ -52,6 +68,10 @@ const getEmergencyMedicalCenter = async (Q0 = '',Q1='') => {
     let data = await getEmergencyMedicalCenter(sido,sigungu);
     var hospital = [];
     let dutytime = "";
+
+    if( disease == "null" ||  disease == "Null" ||  disease == "NULL" )
+        disease = "" ;
+        
     for(var i = 0; i < data.length ; i++){
         let detailInfo = await info.getHospitalInfo(data[i].hpid);
         if(disease == "" || detailInfo[sickness[disease]] == 'Y')
