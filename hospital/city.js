@@ -11,7 +11,7 @@ exports.getEmergencyMedicalCenter = async (Q0 = '',Q1='') => {
     const uri = `/getEgytListInfoInqire?ServiceKey=${serviceKey}&Q0=${Q0}&Q1=${Q1}&numOfRows=100`;
     const temp = await centerInstance.get(uri);
     const info = temp.data.response.body;
-    console.log(info.items.item);
+    //console.log(info.items.item);
 
     if (info.totalCount !== 1) {
         //error
@@ -19,4 +19,4 @@ exports.getEmergencyMedicalCenter = async (Q0 = '',Q1='') => {
     return info.items.item;
 };
 
-exports.getEmergencyMedicalCenter();
+//exports.getEmergencyMedicalCenter();
