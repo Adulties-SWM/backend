@@ -45,14 +45,14 @@ exports.getEmergencyMedicalCenter = async (Q0 = '',Q1='') => {
     return info.items.item;
 };
 
- exports.getSiGunGu = async (Q0 = '',Q1 ='',time = '',disase = '') =>{
+ exports.getSiGunGu = async (Q0 = '',Q1 ='',time = '',disease = '') =>{
     let data = await exports.getEmergencyMedicalCenter(Q0,Q1);
     var hospital = [];
     var result = {};
     let dutytime = "";
     for(var i = 0; i < data.length ; i++){
         let detailInfo = await info.getHospitalInfo(data[i].hpid);
-        if(detailInfo[sickness[disase]] == 'Y')
+        if(disease == "" || detailInfo[sickness[disease]] == 'Y')
         {
             
             dutytime = dutytime.concat(`${detailInfo.dutyTime5s}~${detailInfo.dutyTime5c}`);
@@ -76,4 +76,4 @@ exports.getEmergencyMedicalCenter = async (Q0 = '',Q1='') => {
 
 
  //exports.getEmergencyMedicalCenter("서울특별시","강남구");
- //exports.getSiGunGu("서울특별시","강남구", '','조산산모');
+ //exports.getSiGunGu("서울특별시","강남구", '','');
