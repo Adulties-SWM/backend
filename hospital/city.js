@@ -61,10 +61,8 @@ const getEmergencyMedicalCenter = async (Q0 = '',Q1='') => {
     return info.items.item;
 };
 
- exports.getSiGunGu = async (req, res) =>{
-    let { sido, sigungu, currentAvailable, disease } = req.query; 
 
-
+const getLocalHospitalInfo = async (sido, sigungu, currentAvailable, disease) =>{
     let data = await getEmergencyMedicalCenter(sido,sigungu);
     var hospital = [];
     let dutytime = "";
@@ -87,9 +85,15 @@ const getEmergencyMedicalCenter = async (Q0 = '',Q1='') => {
             });
         }
     }
+    return hospital;
+}
 
+exports.getSiGunGu = async (req, res) =>{
+    let { sido, sigungu, currentAvailable, disease } = req.query; 
+
+    let data = await getLocalHospitalInfo(sido, sigungu, currentAvailable, disease);
    // console.log(hospital);
-    return res.status(200).send({ success: true, hospitals: hospital });
+    return res.status(200).send({ success: true, hospitals: data });
  }
 
 
