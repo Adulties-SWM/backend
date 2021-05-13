@@ -46,7 +46,6 @@ const getEmergencyMedicalCenter = async (Q0 = '',Q1='') => {
 };
 
  exports.getSiGunGu = async (req, res) =>{
-    console.log("hello");
     let { sido, sigungu, currentAvailable, disease } = req.query; 
 
 
@@ -57,13 +56,13 @@ const getEmergencyMedicalCenter = async (Q0 = '',Q1='') => {
         let detailInfo = await info.getHospitalInfo(data[i].hpid);
         if(disease == "" || detailInfo[sickness[disease]] == 'Y')
         {
-            
+            dutytime = "";
             dutytime = dutytime.concat(`${detailInfo.dutyTime5s}~${detailInfo.dutyTime5c}`);
             hospital.push({
                 hpid: detailInfo.hpid,
                 name : detailInfo.dutyName,
-                x:detailInfo.wgs84Lat,
-                y:detailInfo.wgs84Lon,
+                x:detailInfo.wgs84Lon,
+                y:detailInfo.wgs84Lat,
                 dutytime : dutytime
             });
         }
