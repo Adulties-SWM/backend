@@ -21,10 +21,10 @@ exports.getHospitalInfo = async (hpid) => {
 };
 
 exports.getHospitalListFromPosition = async (req, res) => {
-    let { x, y, maxDistance, disease } = req.query;
+    let { lat, lon, maxDistance, disease } = req.query;
     if (!maxDistance) {
         maxDistance = 50000;
     }
-    const hosList = await locaService.getHosByPos(x, y, maxDistance, disease);
+    const hosList = await locaService.getHosByPos(lat, lon, maxDistance, disease);
     return res.status(200).send({ success: true, hospitals: hosList });
 };

@@ -102,8 +102,8 @@ const getHosByPos = async(lat, lon, maxDistance, disease) => {
       newList.push({
         hpid: item.hpid,
         name: item.dutyName,
-        x: item.wgs84Lat? item.wgs84Lat : null,
-        y: item.wgs84Lon? item.wgs84Lon : null,
+        lat: item.wgs84Lat? item.wgs84Lat : null,
+        lon: item.wgs84Lon? item.wgs84Lon : null,
         dutytime: item.dutyTime5s? `${item.dutyTime5s.slice(0,2)}:${item.dutyTime5s.slice(2,4)}~${item.dutyTime5c.slice(0,2)}:${item.dutyTime5c.slice(2,4)}`: null,
         distance,
       })
