@@ -1,6 +1,6 @@
 const axios = require("axios");
 const info = require("../controllers/info");
-
+const time = require("date-utils");
 
 
 var sickness = {
@@ -79,8 +79,8 @@ const getLocalHospitalInfo = async (sido, sigungu, currentAvailable, disease) =>
             hospital.push({
                 hpid: detailInfo.hpid,
                 name : detailInfo.dutyName,
-                x:detailInfo.wgs84Lon,
-                y:detailInfo.wgs84Lat,
+                x:parseFloat(detailInfo.wgs84Lon),
+                y:parseFloat(detailInfo.wgs84Lat),
                 dutytime : dutytime
             });
         }
