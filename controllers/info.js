@@ -1,4 +1,5 @@
 const axios = require("axios");
+const locaService = require('../service/locationService');
 
 const emergencyInstance = axios.create({
     baseURL: "http://apis.data.go.kr/B552657/ErmctInfoInqireService",
@@ -18,3 +19,13 @@ exports.getHospitalInfo = async (hpid) => {
     }
     return info.items.item;
 };
+
+exports.getHospitalListFromPosition = async (req, res) => {
+    let { x, y, maxDistance, disease } = req.query;
+    if (! maxDistance) {
+        maxDistance = 50000;
+    }
+    const hosList = await locaService.getHosByPos(x,y,maxDistance, disease);
+    return res.status(200).send({success: true, hospitals : hosList});
+
+}
