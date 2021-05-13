@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const detail = rrequire("../controllers/detail");
+const detail = require("../controllers/detail");
 
 router.get("/detail", detail.getDetail);
 
