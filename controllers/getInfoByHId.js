@@ -11,12 +11,13 @@ const emergencyInstance = axios.create({
 });
 
 exports.getHospitalInfo = async (hpid) => {
-    //응급 의료기관에서 검색
     const data = {
         HPID = hpid,
         pageNo = 1,
         numberOfRows = 10,
     };
-    let res = await convert.xml2json(emergencyInstance.get("/getEmrrmRltmUsefulSckbdInfoInqire", data));
+
+    //응급 의료기관 기본정보 조회
+    let res = await convert.toJson(emergencyInstance.get("/getEgytBassInfoInqire", data));
     return res;
 };
