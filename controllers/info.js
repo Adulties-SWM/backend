@@ -1,13 +1,13 @@
 const axios = require("axios");
-const locaService = require('../service/locationService');
+const locaService = require("../service/locationService");
+const config = require("../config/key");
 
 const emergencyInstance = axios.create({
     baseURL: "http://apis.data.go.kr/B552657/ErmctInfoInqireService",
 });
 
 exports.getHospitalInfo = async (hpid) => {
-    const serviceKey =
-        "6QC9lid6DLI7BuAiFUYGyeKI0ApUM1jnvGawPV9K55PrmlEViLb4L%2BGc551Y6TpAURgFREbiTTJp2oTttTEsUw%3D%3D";
+    const serviceKey = config.api_key;
     //응급 의료기관 기본정보 조회
     const uri = `/getEgytBassInfoInqire?ServiceKey=${serviceKey}&HPID=${hpid}&pageNo=1&numberOfRows=1`;
     const temp = await emergencyInstance.get(uri);
@@ -22,10 +22,9 @@ exports.getHospitalInfo = async (hpid) => {
 
 exports.getHospitalListFromPosition = async (req, res) => {
     let { x, y, maxDistance, disease } = req.query;
-    if (! maxDistance) {
+    if (!maxDistance) {
         maxDistance = 50000;
     }
-    const hosList = await locaService.getHosByPos(x,y,maxDistance, disease);
-    return res.status(200).send({success: true, hospitals : hosList});
-
-}
+    const hosList = await locaService.getHosByPos(x, y, maxDistance, disease);
+    return res.status(200).send({ success: true, hospitals: hosList });
+};
