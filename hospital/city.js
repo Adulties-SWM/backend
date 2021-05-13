@@ -79,8 +79,8 @@ const getLocalHospitalInfo = async (sido, sigungu, currentAvailable, disease) =>
             hospital.push({
                 hpid: detailInfo.hpid,
                 name : detailInfo.dutyName,
-                x:parseFloat(detailInfo.wgs84Lon),
-                y:parseFloat(detailInfo.wgs84Lat),
+                lon:parseFloat(detailInfo.wgs84Lon),
+                lat:parseFloat(detailInfo.wgs84Lat),
                 dutytime : dutytime
             });
         }
