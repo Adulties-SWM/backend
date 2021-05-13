@@ -12,9 +12,7 @@ exports.getDetail = async (req, res) => {
     dutytime = dutytime.concat(`금(${data.dutyTime5s}~${data.dutyTime5c}),`);
     dutytime = dutytime.concat(`토(${data.dutyTime6s}~${data.dutyTime6c}),`);
     dutytime = dutytime.concat(`일(${data.dutyTime7s}~${data.dutyTime7c}),`);
-    dutytime = dutytime.concat(
-        `공휴일(${data.dutyTime8s}~${data.dutyTime8c}),`
-    );
+    dutytime = dutytime.concat(`공휴일(${data.dutyTime8s}~${data.dutyTime8c})`);
 
     const result = {
         hpid: data.hpid,
