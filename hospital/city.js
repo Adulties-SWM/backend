@@ -23,7 +23,7 @@ const centerInstance = axios.create({
     baseURL: "http://apis.data.go.kr/B552657/ErmctInfoInqireService",
 });
 
-exports.getEmergencyMedicalCenter = async (Q0 = '',Q1='') => {
+const getEmergencyMedicalCenter = async (Q0 = '',Q1='') => {
     //console.log(Q0,Q1);
     Q0 = encodeURIComponent(Q0);
     Q1 = encodeURIComponent(Q1);
@@ -45,10 +45,13 @@ exports.getEmergencyMedicalCenter = async (Q0 = '',Q1='') => {
     return info.items.item;
 };
 
- exports.getSiGunGu = async (Q0 = '',Q1 ='',time = '',disease = '') =>{
-    let data = await exports.getEmergencyMedicalCenter(Q0,Q1);
+ exports.getSiGunGu = async (req, res) =>{
+    console.log("hello");
+    let { sido, sigungu, currentAvailable, disease } = req.query; 
+
+
+    let data = await getEmergencyMedicalCenter(sido,sigungu);
     var hospital = [];
-    var result = {};
     let dutytime = "";
     for(var i = 0; i < data.length ; i++){
         let detailInfo = await info.getHospitalInfo(data[i].hpid);
@@ -56,18 +59,18 @@ exports.getEmergencyMedicalCenter = async (Q0 = '',Q1='') => {
         {
             
             dutytime = dutytime.concat(`${detailInfo.dutyTime5s}~${detailInfo.dutyTime5c}`);
-            result = {
+            hospital.push({
                 hpid: detailInfo.hpid,
                 name : detailInfo.dutyName,
                 x:detailInfo.wgs84Lat,
                 y:detailInfo.wgs84Lon,
                 dutytime : dutytime
-            }
-            hospital.push(result);
+            });
         }
     }
 
-    console.log(hospital);
+   // console.log(hospital);
+    return res.status(200).send({ success: true, hospitals: hospital });
  }
 
 
