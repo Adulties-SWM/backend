@@ -1,5 +1,5 @@
 const axios = require("axios");
-const convert = require("xml-js");
+const convert = require("xml2js");
 
 const emergencyInstance = axios.create({
     baseURL: "http://apis.data.go.kr/B552657/ErmctInfoInqireService",
@@ -15,8 +15,8 @@ exports.getHospitalInfo = async (hpid) => {
     };
 
     //응급 의료기관 기본정보 조회
-    let data = await convert.toJson(
+    let result = await convert.toJson(
         emergencyInstance.get("/getEgytBassInfoInqire", data)
     );
-    return data.body.items[0];
+    return result.body.items[0];
 };

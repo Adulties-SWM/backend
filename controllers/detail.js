@@ -16,7 +16,7 @@ exports.getDetail = async (req, res) => {
         `공휴일(${data.dutyTime8s}~${data.dutyTime8c}),`
     );
 
-    const data = {
+    const result = {
         hpid: data.hpid,
         address: data.dutyAddr,
         tel: data.dutyTel1,
@@ -25,5 +25,5 @@ exports.getDetail = async (req, res) => {
         availableBed: data.dutyEryn, //응급실 운영 여부
         dutytime: dutytime,
     };
-    res.json();
+    res.json(result);
 };
