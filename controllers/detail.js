@@ -12,8 +12,10 @@ exports.getDetail = async (req, res) => {
     dutytime = dutytime.concat(`금(${data.dutyTime5s}~${data.dutyTime5c}),`);
     dutytime = dutytime.concat(`토(${data.dutyTime6s}~${data.dutyTime6c}),`);
     dutytime = dutytime.concat(`일(${data.dutyTime7s}~${data.dutyTime7c}),`);
-    dutytime = dutytime.concat(`공휴일(${data.dutyTime8s}~${data.dutyTime8c}),`);
-    
+    dutytime = dutytime.concat(
+        `공휴일(${data.dutyTime8s}~${data.dutyTime8c}),`
+    );
+
     const data = {
         hpid: data.hpid,
         address: data.dutyAddr,
@@ -21,7 +23,7 @@ exports.getDetail = async (req, res) => {
         beds: data.dutyHano, //병상 수
         availableRoom: data.dutyHayn, //입원실 가용 여부
         availableBed: data.dutyEryn, //응급실 운영 여부
-        dutytime = dutytime,
+        dutytime: dutytime,
     };
     res.json();
 };
