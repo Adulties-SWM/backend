@@ -25,5 +25,6 @@ exports.getDetail = async (req, res) => {
         availableBed: data.dutyEryn, //응급실 운영 여부
         dutytime: dutytime,
     };
+    //console.log(result);
     res.json(result);
 };
