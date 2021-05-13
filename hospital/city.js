@@ -1,7 +1,7 @@
 const axios = require("axios");
 const info = require("../controllers/info");
 //const time = require("date-utils");
-
+const config = require("../config/key");
 
 var sickness = {
     "응급실":"MKioskTy25",
@@ -43,8 +43,7 @@ const getEmergencyMedicalCenter = async (Q0 = '',Q1='') => {
     //console.log(Q0,Q1);
     Q0 = encodeURIComponent(Q0);
     Q1 = encodeURIComponent(Q1);
-    const serviceKey =
-        "%2B0EDtslnfN6Uz8aAoFZq1qrwlfcXawVqrbJFFQEYvTYzvpdIm3ZpbtneOXOSBkcO4Y3%2BdoHkKs6u5VJuXFOxRg%3D%3D";
+    const serviceKey = config.api_key;
     //응급 의료기관 기본정보 조회
     const uri = `/getEgytListInfoInqire?ServiceKey=${serviceKey}&Q0=${Q0}&Q1=${Q1}&numOfRows=100`;
     const temp = await centerInstance.get(uri);
